@@ -17,9 +17,14 @@ extension UIStoryboard {
 /**
  Represents storyboard names and view controller storyboard IDs as enums for instantiating view controllers from storyboards. Meant for use with enums only and the name of the conforming enum is expected to match the name of the corresponding storyboard files. The cases within enum should match the case and spelling of the storyboard IDs used within the corresponding storyboard file.
  
+ 
  This is to mainly to be used in situations with view controllers whose storyboard IDs do not match their class name.
- For example, view controllers that are not custom UIViewController subclasses such as UINavigationControllers
+ For example, view controllers that are not custom UIViewController subclasses such as UINavigationControllers.
+ 
+ 
  For view controller subclasses whose storyboard IDs do match their class name, consider using the StoryboardInstantiate protocol.
+ 
+ 
  For reusable view controllers, consider defining and designing them within their own storyboards.
  
  ## Creating a new storyboard enum
@@ -73,7 +78,7 @@ protocol StoryboardInstantiable {
 
 extension StoryboardInstantiable where Self: UIViewController {
     
-    /// Instantiates this view controller for the originating storyboard defined by `StoryboardName`.
+    /// Instantiates this view controller for the originating storyboard defined by `Origin`.
     static func instantiate() -> Self {
         return Origin.viewController() as! Self
     }
