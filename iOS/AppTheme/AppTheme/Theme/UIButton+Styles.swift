@@ -7,10 +7,13 @@
 //
 
 /**
-# Defining a new style:
-- Add a new ButtonStyle enum case to represent the new style
-- Update the switch statement in the attributes(for style:) function
-    - Note that the Attribute main initializer has default values for the fields you do not specify
+ # Usage:
+     This extension is used for creating pre-defined button styles that can be used throughout the app.
+ 
+ # Defining a new style:
+ - Add a new ButtonStyle enum case to represent the new style
+ - Update the switch statement in the attributes(for style:) function
+     - Note that the Attribute main initializer has default values for the fields you do not specify
  */
 
 import UIKit
@@ -18,27 +21,30 @@ import UIKit
 /// A tupe of colors for corresponding UIControl.State values.
 typealias StateColors = (normal: UIColor?, disabled: UIColor?, highlighted: UIColor?)
 
+// MARK: - ButtonStyle Cases
 extension UIButton {
-    
-    // MARK: - ButtonStyle Cases
+
     enum ButtonStyle {
         case normal
     }
-    
-    // MARK: - Style Attribute Definitions
-    
-    /// Returns attributes for a given ButtonStyle.
-    private class func attributes(for style: ButtonStyle) -> Attributes {
-        switch style {
-        default:
-            return Attributes.solidButton(.orange)
-        }
-        
+}
+
+// MARK: - Style Attribute Definitions
+
+/// Returns attributes for a given ButtonStyle.
+private func attributes(for style: UIButton.ButtonStyle) -> Attributes {
+    switch style {
+    default:
+        return Attributes.solidButton(.orange)
     }
-    
+}
+
+// MARK: - UIButton Style
+extension UIButton {
+
     /// Sets the style of the button. For use with custom type UIButtons.
     func setStyle(_ style: ButtonStyle, setCorners: Bool = true) {
-        let attrs = UIButton.attributes(for: style)
+        let attrs = attributes(for: style)
         setBackgrounds(attrs.color)
         setTitleColors(attrs.title)
         backgroundColor = attrs.background
