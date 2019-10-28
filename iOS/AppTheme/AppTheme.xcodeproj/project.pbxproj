@@ -69,9 +69,9 @@
 		E1084A6823634B45002B888F /* Native */ = {
 			isa = PBXGroup;
 			children = (
+				E151BCC6236763AD00B66802 /* UIColor+Extension.swift */,
 				E1084A66236332C1002B888F /* UIImage+Extension.swift */,
 				E1AD0BFA2367289E0055DCA2 /* UISearchBar+Extension.swift */,
-				E151BCC6236763AD00B66802 /* UIColor+Extension.swift */,
 			);
 			path = Native;
 			sourceTree = "<group>";
@@ -98,9 +98,8 @@
 				E1A41AE723621B7F0052830D /* Application */,
 				E188E619235A549600A430CD /* Theme */,
 				E188E616235A525D00A430CD /* Util */,
-				E1A41AE923621BB30052830D /* View Controller */,
 				E1A41AE823621BAA0052830D /* View */,
-				E188E60B235A51F800A430CD /* Assets.xcassets */,
+				E1A41AE923621BB30052830D /* View Controller */,
 			);
 			path = AppTheme;
 			sourceTree = "<group>";
@@ -117,9 +116,9 @@
 		E188E619235A549600A430CD /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				E188E61A235A54B500A430CD /* UIColor+AppColors.swift */,
-				E14249702361E58600A23029 /* UIButton+Styles.swift */,
 				E1A41AE5236217D20052830D /* AppearanceManager.swift */,
+				E14249702361E58600A23029 /* UIButton+Styles.swift */,
+				E188E61A235A54B500A430CD /* UIColor+AppColors.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -128,8 +127,9 @@
 			isa = PBXGroup;
 			children = (
 				E188E602235A51F700A430CD /* AppDelegate.swift */,
-				E188E610235A51F800A430CD /* Info.plist */,
 				E14249722361F23900A23029 /* AppTheme-Bridging-Header.h */,
+				E188E610235A51F800A430CD /* Info.plist */,
+				E188E60B235A51F800A430CD /* Assets.xcassets */,
 			);
 			path = Application;
 			sourceTree = "<group>";
