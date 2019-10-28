@@ -19,6 +19,7 @@ private extension Int {
 
 extension UIColor {
     
+    /// Create a color from a hex input (0x123456)
     convenience init(_ rgb: Int, alpha: CGFloat = 1.0) {
         self.init(
             red: rgb.red / 255.0,
@@ -28,7 +29,8 @@ extension UIColor {
         )
     }
     
-    func withBrightness(_ factor: Double) -> UIColor {
+    /// Scales the brightness by a factor
+    func adjustBrightness(_ factor: Double) -> UIColor {
         var hue: CGFloat = 0,
             saturation: CGFloat = 0,
             brightness: CGFloat = 0,
@@ -41,12 +43,14 @@ extension UIColor {
         }
     }
     
+    /// Darkens the color by a factor
     func darken(_ percent: Double) -> UIColor {
-        return withBrightness(1 - percent)
+        return adjustBrightness(1 - percent)
     }
     
+    /// Brightens the color by a factor
     func lighten(_ percent: Double) -> UIColor {
-        return withBrightness(1 + percent)
+        return adjustBrightness(1 + percent)
     }
     
 }

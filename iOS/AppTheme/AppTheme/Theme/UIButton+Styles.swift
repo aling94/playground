@@ -7,10 +7,10 @@
 //
 
 /**
- Defining a new style:
-    * Add a new ButtonStyle enum case to represent the new style
-    * Update the switch statement in the attributes(for style:) function
-        - Note that the Attribute main initializer has default values for the fields you do not specify
+# Defining a new style:
+- Add a new ButtonStyle enum case to represent the new style
+- Update the switch statement in the attributes(for style:) function
+    - Note that the Attribute main initializer has default values for the fields you do not specify
  */
 
 import UIKit
