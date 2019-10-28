@@ -7,23 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E1084A67236332C1002B888F /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1084A66236332C1002B888F /* UIImage+Extension.swift */; };
+		E14249712361E58600A23029 /* UIButton+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14249702361E58600A23029 /* UIButton+Styles.swift */; };
 		E188E603235A51F700A430CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E188E602235A51F700A430CD /* AppDelegate.swift */; };
-		E188E605235A51F700A430CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E188E604235A51F700A430CD /* SceneDelegate.swift */; };
 		E188E607235A51F700A430CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E188E606235A51F700A430CD /* ViewController.swift */; };
 		E188E60A235A51F700A430CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E188E608235A51F700A430CD /* Main.storyboard */; };
 		E188E60C235A51F800A430CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E188E60B235A51F800A430CD /* Assets.xcassets */; };
 		E188E60F235A51F800A430CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E188E60D235A51F800A430CD /* LaunchScreen.storyboard */; };
+		E188E618235A535C00A430CD /* Storyboards.swift in Sources */ = {isa = PBXBuildFile; fileRef = E188E617235A535C00A430CD /* Storyboards.swift */; };
+		E188E61B235A54B500A430CD /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E188E61A235A54B500A430CD /* UIColor+AppColors.swift */; };
+		E1A41AE6236217D20052830D /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A41AE5236217D20052830D /* AppearanceManager.swift */; };
+		E1AD0BFB2367289E0055DCA2 /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AD0BFA2367289E0055DCA2 /* UISearchBar+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E1084A66236332C1002B888F /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		E14249702361E58600A23029 /* UIButton+Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Styles.swift"; sourceTree = "<group>"; };
+		E14249722361F23900A23029 /* AppTheme-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppTheme-Bridging-Header.h"; sourceTree = "<group>"; };
 		E188E5FF235A51F700A430CD /* AppTheme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppTheme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E188E602235A51F700A430CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E188E604235A51F700A430CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E188E606235A51F700A430CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E188E609235A51F700A430CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E188E60B235A51F800A430CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E188E60E235A51F800A430CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E188E610235A51F800A430CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E188E617235A535C00A430CD /* Storyboards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboards.swift; sourceTree = "<group>"; };
+		E188E61A235A54B500A430CD /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
+		E1A41AE5236217D20052830D /* AppearanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceManager.swift; sourceTree = "<group>"; };
+		E1AD0BFA2367289E0055DCA2 /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +48,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E1084A642363329B002B888F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E1084A6823634B45002B888F /* Native */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E1084A65236332A6002B888F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E188E617235A535C00A430CD /* Storyboards.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E1084A6823634B45002B888F /* Native */ = {
+			isa = PBXGroup;
+			children = (
+				E1084A66236332C1002B888F /* UIImage+Extension.swift */,
+				E1AD0BFA2367289E0055DCA2 /* UISearchBar+Extension.swift */,
+			);
+			path = Native;
+			sourceTree = "<group>";
+		};
 		E188E5F6235A51F700A430CD = {
 			isa = PBXGroup;
 			children = (
@@ -56,15 +92,60 @@
 		E188E601235A51F700A430CD /* AppTheme */ = {
 			isa = PBXGroup;
 			children = (
-				E188E602235A51F700A430CD /* AppDelegate.swift */,
-				E188E604235A51F700A430CD /* SceneDelegate.swift */,
-				E188E606235A51F700A430CD /* ViewController.swift */,
-				E188E608235A51F700A430CD /* Main.storyboard */,
+				E1A41AE723621B7F0052830D /* Application */,
+				E188E619235A549600A430CD /* Theme */,
+				E188E616235A525D00A430CD /* Util */,
+				E1A41AE923621BB30052830D /* View Controller */,
+				E1A41AE823621BAA0052830D /* View */,
 				E188E60B235A51F800A430CD /* Assets.xcassets */,
-				E188E60D235A51F800A430CD /* LaunchScreen.storyboard */,
-				E188E610235A51F800A430CD /* Info.plist */,
 			);
 			path = AppTheme;
+			sourceTree = "<group>";
+		};
+		E188E616235A525D00A430CD /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				E1084A642363329B002B888F /* Extensions */,
+				E1084A65236332A6002B888F /* Protocols */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		E188E619235A549600A430CD /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				E188E61A235A54B500A430CD /* UIColor+AppColors.swift */,
+				E14249702361E58600A23029 /* UIButton+Styles.swift */,
+				E1A41AE5236217D20052830D /* AppearanceManager.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		E1A41AE723621B7F0052830D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				E188E602235A51F700A430CD /* AppDelegate.swift */,
+				E188E610235A51F800A430CD /* Info.plist */,
+				E14249722361F23900A23029 /* AppTheme-Bridging-Header.h */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		E1A41AE823621BAA0052830D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E188E608235A51F700A430CD /* Main.storyboard */,
+				E188E60D235A51F800A430CD /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E1A41AE923621BB30052830D /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E188E606235A51F700A430CD /* ViewController.swift */,
+			);
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +180,7 @@
 				TargetAttributes = {
 					E188E5FE235A51F700A430CD = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 				};
 			};
@@ -138,9 +220,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A41AE6236217D20052830D /* AppearanceManager.swift in Sources */,
+				E1084A67236332C1002B888F /* UIImage+Extension.swift in Sources */,
+				E188E618235A535C00A430CD /* Storyboards.swift in Sources */,
+				E188E61B235A54B500A430CD /* UIColor+AppColors.swift in Sources */,
 				E188E607235A51F700A430CD /* ViewController.swift in Sources */,
+				E14249712361E58600A23029 /* UIButton+Styles.swift in Sources */,
 				E188E603235A51F700A430CD /* AppDelegate.swift in Sources */,
-				E188E605235A51F700A430CD /* SceneDelegate.swift in Sources */,
+				E1AD0BFB2367289E0055DCA2 /* UISearchBar+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,15 +371,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4949F5FLDL;
-				INFOPLIST_FILE = AppTheme/Info.plist;
+				INFOPLIST_FILE = AppTheme/Application/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = aling94.AppTheme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppTheme/Application/AppTheme-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -302,15 +394,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4949F5FLDL;
-				INFOPLIST_FILE = AppTheme/Info.plist;
+				INFOPLIST_FILE = AppTheme/Application/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = aling94.AppTheme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AppTheme/Application/AppTheme-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
