@@ -17,12 +17,7 @@ extension UISearchBar {
     }
     
     dynamic var fieldColor: UIColor? {
-        get {
-            return textField?.backgroundColor
-        }
-        
-        set {
-            textField?.backgroundColor = newValue
-        }
+        get { return textField?.backgroundColor }
+        set { textField?.backgroundColor = newValue }
     }
 }
