@@ -18,7 +18,7 @@
 
 import UIKit
 
-/// A tupe of colors for corresponding UIControl.State values.
+/// A tuple of colors for corresponding UIControl.State values.
 typealias StateColors = (normal: UIColor?, disabled: UIColor?, highlighted: UIColor?)
 
 // MARK: - ButtonStyle Cases
@@ -34,7 +34,7 @@ extension UIButton {
 /// Returns attributes for a given ButtonStyle.
 private func attributes(for style: UIButton.ButtonStyle) -> Attributes {
     switch style {
-    default:
+    case .normal:
         return Attributes.solidButton(.orange)
     }
 }
@@ -45,8 +45,8 @@ extension UIButton {
     /// Sets the style of the button. For use with custom type UIButtons.
     func setStyle(_ style: ButtonStyle, setCorners: Bool = true) {
         let attrs = attributes(for: style)
-        setBackgrounds(attrs.color)
-        setTitleColors(attrs.title)
+        setColors(attrs.color, setBackground)
+        setColors(attrs.title, setTitleColor)
         backgroundColor = attrs.background
         if setCorners {
             clipsToBounds = attrs.cornerRadius > 0
@@ -58,25 +58,18 @@ extension UIButton {
     
     /// Sets the background to a solid color for the given state.
     func setBackground(_ color: UIColor?, for state: UIControl.State) {
-        if let color = color {
+        if let color = color, color != .clear {
             setBackgroundImage(UIImage(color: color), for: state)
         } else {
             setBackgroundImage(nil, for: state)
         }
     }
     
-    /// Sets the background colors according to the given style.
-    func setBackgrounds(_ colors: StateColors) {
-        setBackground(colors.normal, for: .normal)
-        setBackground(colors.disabled, for: .disabled)
-        setBackground(colors.highlighted, for: .highlighted)
-    }
-    
-    /// Sets the title colors according to the given style.
-    func setTitleColors(_ colors: StateColors) {
-        setTitleColor(colors.normal, for: .normal)
-        setTitleColor(colors.disabled, for: .disabled)
-        setTitleColor(colors.highlighted, for: .highlighted)
+    /// Helper function for setting color for states
+    private func setColors(_ colors: StateColors, _ setter: (UIColor?, UIControl.State) -> Void) {
+        setter(colors.normal, .normal)
+        setter(colors.disabled, .disabled)
+        setter(colors.highlighted, .highlighted)
     }
 }
 
