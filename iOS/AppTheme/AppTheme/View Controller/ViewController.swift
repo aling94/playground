@@ -8,11 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .green
+//        if #available(iOS 10, *) {} else {
+//            tabBar.items?.forEach {
+//                $0.image = $0.image?.withRenderingMode(.alwaysOriginal)
+//            }
+//        }
     }
 
 

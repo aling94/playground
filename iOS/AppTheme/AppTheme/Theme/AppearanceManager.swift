@@ -13,16 +13,18 @@ struct AppearanceManager {
     static let shared = AppearanceManager()
     
     private init() {
-        styleNavBars()
-        styleTabBars()
-        styleTextViews()
-        styleTabBars()
-        styleCollectionViews()
-        styleTableViews()
-        styleSearchBars()
+        setupNavBars()
+        setupTabBars()
+        setupTextViews()
+        setupTabBars()
+        setupCollectionViews()
+        setupTableViews()
+        setupSearchBars()
     }
-    
-    private func styleNavBars() {
+}
+
+private extension AppearanceManager {
+    func setupNavBars() {
         let navBars = UINavigationBar.appearance()
         // Bar background has three layers start from bottom-most: backgroundColor, barTint, backgroundImage
         navBars.backgroundColor = .black
@@ -41,7 +43,7 @@ struct AppearanceManager {
         navBarButtons.tintColor = .white
     }
     
-    private func styleTabBars() {
+    func setupTabBars() {
         let tabBars = UITabBar.appearance()
         // Layer order from bottom-most: backgroundColor, barTint, backgroundImage
         tabBars.backgroundColor = .red
@@ -49,16 +51,16 @@ struct AppearanceManager {
         tabBars.backgroundImage = UIImage(color: .blue)
         // Icon tints
         tabBars.tintColor = .white
-        tabBars.unselectedItemTintColor = .green
+//        tabBars.unselectedItemTintColor = .green
         tabBars.isTranslucent = false
         
         let tabBarItems = UITabBarItem.appearance()
         // unselectedItemTintColor seems to take priority over .normal titleTextAttributes
-        tabBarItems.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.yellow], for: .normal)
-        tabBarItems.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
+        tabBarItems.setTitleTextAttributes(UIColor.yellow.textAttribute, for: .normal)
+        tabBarItems.setTitleTextAttributes(UIColor.black.textAttribute, for: .selected)
     }
     
-    private func styleTableViews() {
+    func setupTableViews() {
         let tables = UITableView.appearance()
         tables.backgroundColor = .orange
         tables.sectionIndexColor = .green
@@ -71,7 +73,7 @@ struct AppearanceManager {
         cells.backgroundColor = .purple
     }
     
-    private func styleCollectionViews() {
+    func setupCollectionViews() {
         let collections = UICollectionView.appearance()
         collections.backgroundColor = .clear
         collections.tintColor = .red
@@ -79,7 +81,7 @@ struct AppearanceManager {
         cells.backgroundColor = .green
     }
     
-    private func styleSearchBars() {
+    func setupSearchBars() {
         let searchBars = UISearchBar.appearance()
         searchBars.placeholder = "Search"
         searchBars.isTranslucent = false
@@ -93,16 +95,19 @@ struct AppearanceManager {
         searchBars.fieldColor = .blue
         
         let cancelButton = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])
-        cancelButton.setTitleTextAttributes(textColor(.black), for: .normal)
+        cancelButton.setTitleTextAttributes(UIColor.black.textAttribute, for: .normal)
         UIView.appearance(whenContainedInInstancesOf: [UINavigationBar.self, UISearchBar.self])
             .backgroundColor = .green
     }
     
-    private func styleTextViews() {
+    func setupTextViews() {
         UITextView.appearance().backgroundColor = .clear
     }
 }
 
-private func textColor(_ color: UIColor) -> [NSAttributedString.Key : Any] {
-    return [NSAttributedString.Key.foregroundColor: color]
+private extension UIColor {
+    
+    var textAttribute: [NSAttributedString.Key : UIColor] {
+        return [.foregroundColor : self]
+    }
 }

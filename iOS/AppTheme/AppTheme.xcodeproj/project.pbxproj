@@ -380,7 +380,7 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4949F5FLDL;
 				INFOPLIST_FILE = AppTheme/Application/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -403,7 +403,7 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4949F5FLDL;
 				INFOPLIST_FILE = AppTheme/Application/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
