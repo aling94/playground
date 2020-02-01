@@ -38,7 +38,7 @@ private extension AppearanceManager {
         navBars.isTranslucent = false
         
         // Other ways of styling buttons in nav bar
-        let navBarButtons = UIButton.appearance(whenContainedInInstancesOf: [UINavigationBar.self])
+        let navBarButtons = UIButton.appearance(in: UINavigationBar.self)
         navBarButtons.backgroundColor = .purple
         navBarButtons.tintColor = .white
     }
@@ -51,7 +51,7 @@ private extension AppearanceManager {
         tabBars.backgroundImage = UIImage(color: .blue)
         // Icon tints
         tabBars.tintColor = .white
-//        tabBars.unselectedItemTintColor = .green
+        tabBars.unselectedItemTintColor = .green
         tabBars.isTranslucent = false
         
         let tabBarItems = UITabBarItem.appearance()
@@ -68,7 +68,7 @@ private extension AppearanceManager {
         tables.tableFooterView = UIView()
         
         // Colors the front most view of the HeadFooterView
-        UIView.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self]).backgroundColor = .yellow
+        UIView.appearance(in: UITableViewHeaderFooterView.self).backgroundColor = .yellow
         let cells = UITableViewCell.appearance()
         cells.backgroundColor = .purple
     }
@@ -96,8 +96,7 @@ private extension AppearanceManager {
         
         let cancelButton = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])
         cancelButton.setTitleTextAttributes(UIColor.black.textAttribute, for: .normal)
-        UIView.appearance(whenContainedInInstancesOf: [UINavigationBar.self, UISearchBar.self])
-            .backgroundColor = .green
+        UIView.appearance(in: UINavigationBar.self, UISearchBar.self).backgroundColor = .green
     }
     
     func setupTextViews() {
@@ -109,5 +108,12 @@ private extension UIColor {
     
     var textAttribute: [NSAttributedString.Key : UIColor] {
         return [.foregroundColor : self]
+    }
+}
+
+private extension UIAppearance {
+    
+    static func appearance(in container: UIAppearanceContainer.Type...) -> Self {
+        return appearance(whenContainedInInstancesOf: container)
     }
 }
