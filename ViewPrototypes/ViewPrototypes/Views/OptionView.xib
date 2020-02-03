@@ -62,10 +62,8 @@
                         </label>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="DYf-Gm-K4A" firstAttribute="top" secondItem="Xpa-YF-JLN" secondAttribute="top" id="4h4-k6-Y0U"/>
-                        <constraint firstItem="niK-wi-Zgb" firstAttribute="centerY" secondItem="Xpa-YF-JLN" secondAttribute="centerY" id="Jfo-HC-jKx"/>
-                        <constraint firstItem="niK-wi-Zgb" firstAttribute="leading" secondItem="Xpa-YF-JLN" secondAttribute="leading" id="f0F-M5-MPF"/>
-                        <constraint firstAttribute="bottom" secondItem="DYf-Gm-K4A" secondAttribute="bottom" id="mQN-Zv-SEX"/>
+                        <constraint firstAttribute="bottom" secondItem="DYf-Gm-K4A" secondAttribute="bottom" id="TyH-Me-mHb"/>
+                        <constraint firstItem="DYf-Gm-K4A" firstAttribute="top" secondItem="Xpa-YF-JLN" secondAttribute="top" id="cVA-ai-sog"/>
                     </constraints>
                 </stackView>
             </subviews>

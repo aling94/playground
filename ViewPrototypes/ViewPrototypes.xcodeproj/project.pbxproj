@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E194D2A523E78BDD00C64B3D /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E194D2A323E78BDD00C64B3D /* OptionCell.swift */; };
+		E194D2A623E78BDD00C64B3D /* OptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E194D2A423E78BDD00C64B3D /* OptionCell.xib */; };
 		E1B2D4CC23E5CA9C00DBFEFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1B2D4CB23E5CA9C00DBFEFA /* Assets.xcassets */; };
 		E1B2D4CF23E5CA9C00DBFEFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1B2D4CD23E5CA9C00DBFEFA /* LaunchScreen.storyboard */; };
 		E1B2D4DF23E5CB2900DBFEFA /* OptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1B2D4D723E5CB2900DBFEFA /* OptionView.xib */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E194D2A323E78BDD00C64B3D /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
+		E194D2A423E78BDD00C64B3D /* OptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionCell.xib; sourceTree = "<group>"; };
 		E1B2D4BF23E5CA9B00DBFEFA /* ViewPrototypes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViewPrototypes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1B2D4CB23E5CA9C00DBFEFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1B2D4CE23E5CA9C00DBFEFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E194D2A023E7809000C64B3D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E194D2A323E78BDD00C64B3D /* OptionCell.swift */,
+				E194D2A423E78BDD00C64B3D /* OptionCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		E1B2D4B623E5CA9B00DBFEFA = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +91,7 @@
 		E1E94BE423E7659D000C3AF8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E194D2A023E7809000C64B3D /* Cells */,
 				E1B2D4DD23E5CB2900DBFEFA /* OptionView.swift */,
 				E1B2D4D723E5CB2900DBFEFA /* OptionView.xib */,
 			);
@@ -160,6 +174,7 @@
 			files = (
 				E1B2D4CF23E5CA9C00DBFEFA /* LaunchScreen.storyboard in Resources */,
 				E1B2D4E023E5CB2900DBFEFA /* Main.storyboard in Resources */,
+				E194D2A623E78BDD00C64B3D /* OptionCell.xib in Resources */,
 				E1B2D4CC23E5CA9C00DBFEFA /* Assets.xcassets in Resources */,
 				E1B2D4DF23E5CB2900DBFEFA /* OptionView.xib in Resources */,
 			);
@@ -174,6 +189,7 @@
 			files = (
 				E1E94BE823E76647000C3AF8 /* UITableView+Extensions.swift in Sources */,
 				E1E67AB823E5CC72004D6CC2 /* AppDelegate.swift in Sources */,
+				E194D2A523E78BDD00C64B3D /* OptionCell.swift in Sources */,
 				E1B2D4E523E5CB2900DBFEFA /* OptionView.swift in Sources */,
 				E1E67ABA23E5CCA7004D6CC2 /* UIView+Extensions.swift in Sources */,
 				E1E67AB623E5CC4C004D6CC2 /* ViewController.swift in Sources */,

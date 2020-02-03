@@ -10,17 +10,33 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var optionOne: OptionView!
-    @IBOutlet weak var optionTwo: OptionView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTable()
+    }
+}
+
+extension ViewController: UITableViewDataSource {
+    
+    private func setupTable() {
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 250
+        tableView.separatorStyle = .none
+        tableView.register(cellClass: OptionCell.self)
     }
     
-    @IBAction func optionOne(_ sender: Any) {
-        print("You are clicking Option One")
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
-    @IBAction func optionTwo(_ sender: Any) {
-        print("You are clicking Option Two")
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeue(cellClass: OptionCell.self)
+        else { return UITableViewCell() }
+        
+        return cell
     }
 }
