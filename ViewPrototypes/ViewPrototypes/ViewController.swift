@@ -26,6 +26,7 @@ extension ViewController: UITableViewDataSource {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 250
         tableView.separatorStyle = .none
+        tableView.delaysContentTouches = false
         tableView.register(cellClass: OptionCell.self)
     }
     

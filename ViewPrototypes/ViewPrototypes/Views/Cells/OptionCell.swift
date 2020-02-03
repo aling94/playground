@@ -8,7 +8,4 @@
 
 import UIKit
 
-class OptionCell: UITableViewCell {
-
-    
-}
+class OptionCell: UITableViewCell {}
