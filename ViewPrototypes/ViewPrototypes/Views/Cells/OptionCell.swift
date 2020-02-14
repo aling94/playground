@@ -8,4 +8,22 @@
 
 import UIKit
 
-class OptionCell: UITableViewCell {}
+class OptionCell: UITableViewCell {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+}
+
+// MARK: - Private setup and helpers
+private extension OptionCell {
+    
+    func commonInit() {
+        selectionStyle = .none
+    }
+}
