@@ -20,11 +20,25 @@ struct CharacterListView: View {
     }
     
     var listView: some View {
-        List { ForEach(viewModel.characters) { character in
-            NavigationLink(character.name, destination: character.detailView) }
+        VStack {
+            SearchBar(text: $viewModel.searchText)
+            List {
+                if viewModel.characters.isEmpty { emptySection }
+                else { characterSection }
+            }
         }
-        .listStyle(GroupedListStyle())
         .navigationBarTitle(Bundle.main.targetName)
+    }
+    
+    var characterSection: some View {
+        ForEach(viewModel.characters) { NavigationLink($0.name, destination: $0.detailView) }
+    }
+    
+    var emptySection: some View {
+        Section {
+            Text("No results")
+                .foregroundColor(.gray)
+        }
     }
 }
 
