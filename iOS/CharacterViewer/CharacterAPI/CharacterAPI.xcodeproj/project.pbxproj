@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E1D79FBF2490915E0044555A /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D79FBC2490915E0044555A /* MockURLProtocol.swift */; };
+		E1D79FC02490915E0044555A /* TestResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D79FBD2490915E0044555A /* TestResources.swift */; };
+		E1D79FC12490915E0044555A /* MockCharacterResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = E1D79FBE2490915E0044555A /* MockCharacterResponse.json */; };
 		E1DF1D58248349BC00302EDD /* CharacterAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = E1DF1D56248349BC00302EDD /* CharacterAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1DF1D6224834A5800302EDD /* CharaterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF1D6124834A5800302EDD /* CharaterAPI.swift */; };
 		E1DF1D6424834A8100302EDD /* TVCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF1D6324834A8100302EDD /* TVCharacter.swift */; };
 		E1DF1D7024834B4500302EDD /* CharacterAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1DF1D53248349BC00302EDD /* CharacterAPI.framework */; };
-		E1DF1D7D24834BA600302EDD /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF1D7724834BA600302EDD /* MockURLProtocol.swift */; };
-		E1DF1D8324834E3800302EDD /* TestResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF1D8224834E3800302EDD /* TestResources.swift */; };
-		E1DF1D8524834E4200302EDD /* MockCharacterResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = E1DF1D8424834E4200302EDD /* MockCharacterResponse.json */; };
 		E1DF1D8824834E6800302EDD /* CharacterModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF1D8624834E6800302EDD /* CharacterModelTests.swift */; };
 		E1DF1D8924834E6800302EDD /* CharacterAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF1D8724834E6800302EDD /* CharacterAPITests.swift */; };
 /* End PBXBuildFile section */
@@ -29,6 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E1D79FBC2490915E0044555A /* MockURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		E1D79FBD2490915E0044555A /* TestResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestResources.swift; sourceTree = "<group>"; };
+		E1D79FBE2490915E0044555A /* MockCharacterResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockCharacterResponse.json; sourceTree = "<group>"; };
 		E1DF1D53248349BC00302EDD /* CharacterAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CharacterAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1DF1D56248349BC00302EDD /* CharacterAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacterAPI.h; sourceTree = "<group>"; };
 		E1DF1D57248349BC00302EDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,9 +39,6 @@
 		E1DF1D6324834A8100302EDD /* TVCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCharacter.swift; sourceTree = "<group>"; };
 		E1DF1D6B24834B4500302EDD /* CharacterAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharacterAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1DF1D6F24834B4500302EDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1DF1D7724834BA600302EDD /* MockURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
-		E1DF1D8224834E3800302EDD /* TestResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestResources.swift; sourceTree = "<group>"; };
-		E1DF1D8424834E4200302EDD /* MockCharacterResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockCharacterResponse.json; sourceTree = "<group>"; };
 		E1DF1D8624834E6800302EDD /* CharacterModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterModelTests.swift; sourceTree = "<group>"; };
 		E1DF1D8724834E6800302EDD /* CharacterAPITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterAPITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +69,16 @@
 				E1DF1D8624834E6800302EDD /* CharacterModelTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		E1D79FBB2490915E0044555A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E1D79FBC2490915E0044555A /* MockURLProtocol.swift */,
+				E1D79FBD2490915E0044555A /* TestResources.swift */,
+				E1D79FBE2490915E0044555A /* MockCharacterResponse.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		E1DF1D49248349BC00302EDD = {
@@ -104,21 +114,10 @@
 			isa = PBXGroup;
 			children = (
 				E1DF1D6F24834B4500302EDD /* Info.plist */,
-				E1DF1D7824834BA600302EDD /* Resources */,
+				E1D79FBB2490915E0044555A /* Resources */,
 				E18D5A45248355C900C10EF7 /* Tests */,
 			);
 			path = CharacterAPITests;
-			sourceTree = "<group>";
-		};
-		E1DF1D7824834BA600302EDD /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				E1DF1D8224834E3800302EDD /* TestResources.swift */,
-				E1DF1D7724834BA600302EDD /* MockURLProtocol.swift */,
-				E1DF1D8424834E4200302EDD /* MockCharacterResponse.json */,
-			);
-			name = Resources;
-			path = ../../Characters/CharacterTests/Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,7 +220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1DF1D8524834E4200302EDD /* MockCharacterResponse.json in Resources */,
+				E1D79FC12490915E0044555A /* MockCharacterResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,10 +240,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1DF1D7D24834BA600302EDD /* MockURLProtocol.swift in Sources */,
+				E1D79FBF2490915E0044555A /* MockURLProtocol.swift in Sources */,
+				E1D79FC02490915E0044555A /* TestResources.swift in Sources */,
 				E1DF1D8924834E6800302EDD /* CharacterAPITests.swift in Sources */,
 				E1DF1D8824834E6800302EDD /* CharacterModelTests.swift in Sources */,
-				E1DF1D8324834E3800302EDD /* TestResources.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
