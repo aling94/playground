@@ -1,0 +1,42 @@
+{
+  "palette": [
+    {
+      "gray": [
+        ["gray00", "#FFFFFF"],
+        ["gray20", "#CCCCCC"],
+        ["gray40", "#999999"],
+        ["gray60", "#666666"],
+        ["gray80", "#333333"]
+      ]
+    },
+
+    {
+      "blue": [
+        ["blueLitest", "D0EFFF", "0.9"],
+        ["blueLite", "2A9DF4"],
+        ["blue", "187BCD"],
+        ["blueDark", "1167B1"],
+        ["blueDarkest", "03254C"]
+      ]
+    }
+    
+
+  ],
+
+  "aliases": [
+    {
+      "general": [
+        ["background", "gray.gray00"]
+      ]
+    },
+
+    {
+      "button": [
+        ["cta", "blue.blue"],
+        ["ctaLite", "blue.blue", "0.8"]
+      ]
+    }
+
+
+  ]
+}
