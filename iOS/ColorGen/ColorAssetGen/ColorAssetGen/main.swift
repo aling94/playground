@@ -8,10 +8,22 @@ typealias Color = [String]
 /// extension Color
 extension Array where Element == String {
     var name: String { first ?? "" }
-    var val: String { last ?? "" }
+    var val: String { count > 1 ? self[1] : "" }
+    var alpha: CGFloat { count > 2 ? CGFloat(Double(self[2])!) : 1 }
     var isAlias: Bool { val.contains(".") }
     var ref: String { "\(val.split(separator: ".").last ?? "")" }
     var hex: String { val.hasPrefix("#") ? val : "#" + val }
+    
+    var rgba: (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+        let cString = val.uppercased()
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: "^#+", with: "", options: .regularExpression)
+        guard cString.count == 6 else { return (0, 0, 0, alpha) }
+        
+        var hex: UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&hex)
+        return (hex.red, hex.green, hex.blue, alpha)
+    }
 }
 
 // MARK: - Group
@@ -63,10 +75,10 @@ final class ColorAssets: Decodable, Encodable {
     private lazy var maxLen = max(palette.maxNameLen, aliases.maxNameLen)
     
     /// A mapping of palette references (groupName.colorName) to their respective hex values.
-    private lazy var paletteMap: [String : String] = palette.reduce([:]) { (map, group) in
+    private lazy var paletteMap: [String : Color] = palette.reduce([:]) { (map, group) in
         var map = map
         let name = group.name
-        group.colors.forEach { map["\(name).\($0.name)"] = $0.val }
+        group.colors.forEach { map["\(name).\($0.name)"] = $0 }
         return map
     }
     
@@ -78,7 +90,7 @@ final class ColorAssets: Decodable, Encodable {
     /// Constructs the contents for a Color Asset Content.swift file, assuming the String is an RGB
     /// hex String.
     private func jsonContent(_ color: Color) -> String {
-       let (r, g, b) = (paletteMap[color.val] ?? color.val).rgb
+       let (r, g, b, a) = (paletteMap[color.val] ?? color).rgba
        return """
        {
          "info": { "version": 1, "author": "xcode" },
@@ -91,7 +103,7 @@ final class ColorAssets: Decodable, Encodable {
                  "red": "\(r)",
                  "green": "\(g)",
                  "blue": "\(b)",
-                 "alpha": "1.0"
+                 "alpha": "\(a)"
                }
              }
            }
@@ -114,8 +126,8 @@ final class ColorAssets: Decodable, Encodable {
         // Use Palette color reference if an aliases, otherwise use color literal.
         var val: String = "Palette.\(color.ref)"
         if !color.isAlias {
-            let (r, g, b) = color.val.rgb
-            val = "#colorLiteral(red: \(r), green: \(g), blue: \(b), alpha: 1.0)  ///  \(color.hex)"
+            let (r, g, b, a) = color.rgba
+            val = "#colorLiteral(red: \(r), green: \(g), blue: \(b), alpha: \(a))  ///  \(color.hex)"
         }
         return "  static let \(color.name.pad(maxLen)) = \(val)"
     }
@@ -134,18 +146,6 @@ extension String {
     /// Pad the String up to a length.
     func pad(_ length: Int) -> String {
         count >= length ? self : padding(toLength: length, withPad: " ", startingAt: 0)
-    }
-
-    /// Returns an RGB tuple assuming the String is an RGB hex String.
-    var rgb: (r: CGFloat, g: CGFloat, b: CGFloat) {
-        let cString = uppercased()
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-            .replacingOccurrences(of: "^#+", with: "", options: .regularExpression)
-        guard cString.count == 6 else { return (0, 0, 0) }
-        
-        var hex: UInt64 = 0
-        Scanner(string: cString).scanHexInt64(&hex)
-        return (hex.red, hex.green, hex.blue)
     }
     
     func write(to path: URL) {
