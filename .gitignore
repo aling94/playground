@@ -68,3 +68,4 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 Colors.swift
 iOS/ColorGen/ColorAssetGen/ColorAssetGen/Colors.xcassets
+iOS/ColorGen/TestBuildPhases/TestBuildPhases/Colors.xcassets
