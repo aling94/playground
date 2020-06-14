@@ -50,7 +50,7 @@ final class ColorAssets: Decodable, Encodable {
     
     /// A list of colors groups, each consisting of a group name and a list of colors with each
     /// color's corrresponding content for its Color Asset Contents.json file.
-    lazy var content = (palette: palette.map(AssetContent), aliases: aliases.map(AssetContent))
+    lazy var content = (palette: palette.map(assetContent), aliases: aliases.map(assetContent))
     
     /// Content for the Swift extension file.
     func extensionFile() -> String {
@@ -83,7 +83,7 @@ final class ColorAssets: Decodable, Encodable {
     }
     
     /// Formats group data to be written as Color Asset Contents.json files.
-    private func AssetContent(_ group: Group) -> ColorGen.AssetContent {
+    private func assetContent(_ group: Group) -> ColorGen.AssetContent {
         (group.name.capitalized, group.colors.map { color in (color.name, jsonContent(color)) })
     }
     
