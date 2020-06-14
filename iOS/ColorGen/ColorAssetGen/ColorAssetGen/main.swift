@@ -9,7 +9,7 @@ typealias Color = [String]
 extension Array where Element == String {
     var name: String { first ?? "" }
     var val: String { count > 1 ? self[1] : "" }
-    var alpha: CGFloat? { count > 2 ? CGFloat(Double(self[2])!) : nil }
+    var alpha: CGFloat? { count > 2 ? CGFloat(Double(self[2]) ?? 1) : nil }
     var isAlias: Bool { val.contains(".") }
     var ref: String { "\(val.split(separator: ".").last ?? "")" }
     var hex: String { val.hasPrefix("#") ? val : "#" + val }
