@@ -9,7 +9,7 @@ typealias Color = [String]
 extension Array where Element == String {
     var name: String { first ?? "" }
     var val: String { count > 1 ? self[1] : "" }
-    var alpha: CGFloat? { count > 2 ? CGFloat(Double(self[2]) ?? 1) : nil }
+    var alpha: CGFloat? { count > 2 ? CGFloat(self[2]) : nil }
     var isAlias: Bool { val.contains(".") }
     var ref: String { "\(val.split(separator: ".").last ?? "")" }
     var hex: String { val.hasPrefix("#") ? val : "#" + val }
@@ -135,6 +135,10 @@ final class ColorAssets: Decodable, Encodable {
 }
 
 // MARK: - Helpers
+
+extension CGFloat {
+    init(_ number: String) { self.init(Double(number) ?? 1) }
+}
 
 extension UInt64 {
     var red:   CGFloat { CGFloat((self & 0xFF0000) >> 16) / 255.0 }
