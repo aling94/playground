@@ -58,7 +58,7 @@ final class ColorAssets: Decodable, Encodable {
     }
     
     /// The length of the longest color name/alias. Used for padding the Swift extension file.
-    private lazy var maxLen = (name: palette.maxNameLen, alias: aliases.maxNameLen)
+    private lazy var maxLen = max(palette.maxNameLen, aliases.maxNameLen)
     
     /// A mapping of palette references (groupName.colorName) to their respective hex values.
     private lazy var paletteMap: [String : String] = palette.reduce([:]) { (map, group) in
@@ -109,17 +109,15 @@ final class ColorAssets: Decodable, Encodable {
     }
     
     private func staticLine(_ color: Color) -> String {
-        let name = color.name.pad(color.isAlias ? maxLen.alias : maxLen.name)
-        return "  static let \(name) = \(assignVal(color))"
-    }
-    
-    /// Returns the Palette color reference if an aliases, otherwise returns the color literal.
-    private func assignVal(_ color: Color) -> String {
-        let val = color.val
-        if color.isAlias { return "Palette.\(val.split(separator: ".").last ?? "")" }
-        let (r, g, b) = val.rgb
-        let hex = "\(val.hasPrefix("#") ? "" : "#")\(val)"
-        return "#colorLiteral(red: \(r), green: \(g), blue: \(b), alpha: 1.0)   ///  \(hex)"
+        // Use Palette color reference if an aliases, otherwise use color literal.
+        let assignVal: String = {
+            var val = color.val
+            if color.isAlias { return "Palette.\(val.split(separator: ".").last ?? "")" }
+            let (r, g, b) = val.rgb
+            if !val.hasPrefix("#") { val = "#" + val }
+            return "#colorLiteral(red: \(r), green: \(g), blue: \(b), alpha: 1.0)   ///  \(val)"
+        }()
+        return "  static let \(color.name.pad(maxLen)) = \(assignVal)"
     }
 }
 
@@ -135,15 +133,13 @@ extension String {
     
     /// Pad the String up to a length.
     func pad(_ length: Int) -> String {
-        return self.count >= length ?
-            self :
-            self.padding(toLength: length, withPad: " ", startingAt: 0)
+        count >= length ? self : padding(toLength: length, withPad: " ", startingAt: 0)
     }
 
     /// Returns an RGB tuple assuming the String is an RGB hex String.
     var rgb: (r: CGFloat, g: CGFloat, b: CGFloat) {
-        let cString = self
-            .trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        let cString = uppercased()
+            .trimmingCharacters(in: .whitespacesAndNewlines)
             .replacingOccurrences(of: "^#+", with: "", options: .regularExpression)
         guard cString.count == 6 else { return (0, 0, 0) }
         
@@ -152,15 +148,16 @@ extension String {
         return (hex.red, hex.green, hex.blue)
     }
     
-    func write(_ filename: String, parent: URL) {
-        let dir = parent.relativePath
+    func write(to path: URL) {
         do {
             try FileManager.default.createDirectory(
-                atPath: dir, withIntermediateDirectories: true, attributes: nil
+                at: path.deletingLastPathComponent(),
+                withIntermediateDirectories: true,
+                attributes: nil
             )
             FileManager.default.createFile(
-                atPath: "\(dir)/\(filename)",
-                contents: self.data(using: .utf8),
+                atPath: path.relativePath,
+                contents: data(using: .utf8),
                 attributes: nil
             )
         } catch { exitWith(error.localizedDescription) }
@@ -210,7 +207,7 @@ final class ColorGen {
         deleteFiles()
         createColorSetFile(list: assets.content.palette, parent: .colors)
         createColorSetFile(list: assets.content.aliases, parent: .aliases)
-        assets.extensionFile().write("Colors.swift", parent: .root)
+        assets.extensionFile().write(to: .colorFile)
     }
     
     private func finish() {
@@ -221,8 +218,10 @@ final class ColorGen {
         list.forEach { (groupName, colors) in
             let group = parent.appendingPathComponent(groupName, isDirectory: true)
             colors.forEach { colorName, json in
-                let dir = group.appendingPathComponent("\(colorName).colorset", isDirectory: true)
-                json.write("Contents.json", parent: dir)
+                let path = group
+                    .appendingPathComponent("\(colorName).colorset", isDirectory: true)
+                    .appendingPathComponent("Contents.json", isDirectory: false)
+                json.write(to: path)
             }
         }
     }
