@@ -1,4 +1,4 @@
-#!/usr/bin/env xcrun --sdk macosx swift
+#!/usr/bin/xcrun --sdk macosx swift
 
 import Foundation
 
