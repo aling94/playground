@@ -51,19 +51,12 @@ final class ColorAssets: Decodable, Encodable {
         return map
     }
     
-    /// The length of the longest palette color name. Used for padding the Swift extension file.
-    private lazy var maxNameLen = palette.maxNameLen
+    /// The length of the longest color name/alias. Used for padding the Swift extension file.
+    private lazy var maxLen = (name: palette.maxNameLen, alias: aliases.maxNameLen)
     
-    /// The length of the longest alias color name. Used for padding the Swift extension file.
-    private lazy var maxAliasLen = aliases.maxNameLen
-    
-    /// A list of palette groups, each consisting of a group name and a list of colors with each
-    /// color's corrresponding content for its Color Asset JSON file.
-    lazy var paletteAssets = palette.map { ($0.name.capitalized, $0.colors.map(asset)) }
-    
-    /// A list of alias groups, each consisting of a group name and a list of colors with each
-    /// color's corrresponding content for its Color Asset JSON file.
-    lazy var aliasAssets = aliases.map { ($0.name.capitalized, $0.colors.map(asset)) }
+    /// A list of colors groups, each consisting of a group name and a list of colors with each
+    /// color's corrresponding content for its Color Asset Contents.json file.
+    lazy var content = (palette: palette.map(AssetContent), aliases: aliases.map(AssetContent))
     
     /// Content for the Swift extension file.
     func extensionFile() -> String {
@@ -87,7 +80,10 @@ final class ColorAssets: Decodable, Encodable {
 
 private extension ColorAssets {
     
-    func asset(_ color: Color) -> (String, String) { (color.name, jsonContent(color)) }
+    /// Formats group data to be written as Color Asset Contents.json files.
+    func AssetContent(_ group: Group) -> ColorGen.AssetContent {
+        (group.name.capitalized, group.colors.map { color in (color.name, jsonContent(color)) })
+    }
     
     /// Constructs the contents for a Color Asset Content.swift file, assuming the String is an RGB
     /// hex String.
@@ -125,7 +121,7 @@ private extension ColorAssets {
     }
     
     func staticLine(_ color: Color) -> String {
-        let name = color.name.pad(color.isAlias ? maxAliasLen : maxNameLen)
+        let name = color.name.pad(color.isAlias ? maxLen.alias : maxLen.name)
         return "  static let \(name) = \(assignVal(color))"
     }
     
@@ -197,7 +193,7 @@ extension String {
 /// Uses the data parsed by `ColorAssets` to create Color Asset JSON files and Swift UIColor
 /// extensions for use in XCode projects.
 final class ColorGen {
-    typealias AssetGroup = (String, [(String, String)])
+    typealias AssetContent = (String, [(String, String)])
     
     static let shared = ColorGen()
     
@@ -235,8 +231,8 @@ private extension ColorGen {
         print("Writing Files")
         guard let assets = assets else { exitWith("Input is missing") }
         deleteFiles()
-        createColorSetFile(list: assets.paletteAssets, parent: .colors)
-        createColorSetFile(list: assets.aliasAssets, parent: .aliases)
+        createColorSetFile(list: assets.content.palette, parent: .colors)
+        createColorSetFile(list: assets.content.aliases, parent: .aliases)
         assets.extensionFile().write("Colors.swift", parent: .root)
     }
     
@@ -246,7 +242,7 @@ private extension ColorGen {
         exit(EXIT_SUCCESS)
     }
     
-    func createColorSetFile(list: [AssetGroup], parent: URL) {
+    func createColorSetFile(list: [AssetContent], parent: URL) {
         list.forEach { (groupName, colors) in
             let group = parent.appendingPathComponent(groupName, isDirectory: true)
             colors.forEach { colorName, json in
