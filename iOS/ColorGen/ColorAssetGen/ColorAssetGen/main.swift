@@ -1,12 +1,6 @@
 #!/usr/bin/swift
 import Foundation
 
-/// ================================================================================================
-    // MARK: - Type Defs
-/// ================================================================================================
-
-typealias RGB = (r: CGFloat, g: CGFloat, b: CGFloat)
-
 // MARK: - Color
 
 /// Color = [colorName, hexString]
@@ -32,27 +26,13 @@ extension Array where Element == Group { // extension [Group]
     var maxNameLen: Int { flatMap { $0.colors.map { $0.name.count } }.max(by: <) ?? 0 }
 }
 
-
-/// ================================================================================================
-    // MARK: - ColorAssets
-/// ================================================================================================
+// MARK: - ColorAssets
 
 /// Model class for parsing Palette and Alias Colors from a JSON file and creating their respective
 /// JSON files and Swift extension files.
 final class ColorAssets: Decodable, Encodable {
     let palette: [Group]
     let aliases: [Group]
-    
-    /// A mapping of palette references (groupName.colorName) to their respective hex values.
-    private lazy var paletteMap: [String : String] = palette.reduce([:]) { (map, group) in
-        var map = map
-        let name = group.name
-        group.colors.forEach { map["\(name).\($0.name)"] = $0.val }
-        return map
-    }
-    
-    /// The length of the longest color name/alias. Used for padding the Swift extension file.
-    private lazy var maxLen = (name: palette.maxNameLen, alias: aliases.maxNameLen)
     
     /// A list of colors groups, each consisting of a group name and a list of colors with each
     /// color's corrresponding content for its Color Asset Contents.json file.
@@ -76,18 +56,26 @@ final class ColorAssets: Decodable, Encodable {
         }
         """
     }
-}
-
-private extension ColorAssets {
+    
+    /// The length of the longest color name/alias. Used for padding the Swift extension file.
+    private lazy var maxLen = (name: palette.maxNameLen, alias: aliases.maxNameLen)
+    
+    /// A mapping of palette references (groupName.colorName) to their respective hex values.
+    private lazy var paletteMap: [String : String] = palette.reduce([:]) { (map, group) in
+        var map = map
+        let name = group.name
+        group.colors.forEach { map["\(name).\($0.name)"] = $0.val }
+        return map
+    }
     
     /// Formats group data to be written as Color Asset Contents.json files.
-    func AssetContent(_ group: Group) -> ColorGen.AssetContent {
+    private func AssetContent(_ group: Group) -> ColorGen.AssetContent {
         (group.name.capitalized, group.colors.map { color in (color.name, jsonContent(color)) })
     }
     
     /// Constructs the contents for a Color Asset Content.swift file, assuming the String is an RGB
     /// hex String.
-    func jsonContent(_ color: Color) -> String {
+    private func jsonContent(_ color: Color) -> String {
        let (r, g, b) = (paletteMap[color.val] ?? color.val).rgb
        return """
        {
@@ -110,7 +98,7 @@ private extension ColorAssets {
        """
     }
     
-    func swiftLines(_ input: [Group]) -> String {
+    private func swiftLines(_ input: [Group]) -> String {
         return input.map { group in
             """
               // MARK: - \(group.name.capitalized)
@@ -120,13 +108,13 @@ private extension ColorAssets {
         }.joined(separator: "\n")
     }
     
-    func staticLine(_ color: Color) -> String {
+    private func staticLine(_ color: Color) -> String {
         let name = color.name.pad(color.isAlias ? maxLen.alias : maxLen.name)
         return "  static let \(name) = \(assignVal(color))"
     }
     
     /// Returns the Palette color reference if an aliases, otherwise returns the color literal.
-    func assignVal(_ color: Color) -> String {
+    private func assignVal(_ color: Color) -> String {
         let val = color.val
         if color.isAlias { return "Palette.\(val.split(separator: ".").last ?? "")" }
         let (r, g, b) = val.rgb
@@ -135,10 +123,7 @@ private extension ColorAssets {
     }
 }
 
-
-/// ================================================================================================
-    // MARK: - Helpers
-/// ================================================================================================
+// MARK: - Helpers
 
 extension UInt64 {
     var red:   CGFloat { CGFloat((self & 0xFF0000) >> 16) / 255.0 }
@@ -154,9 +139,9 @@ extension String {
             self :
             self.padding(toLength: length, withPad: " ", startingAt: 0)
     }
-    
+
     /// Returns an RGB tuple assuming the String is an RGB hex String.
-    var rgb: RGB {
+    var rgb: (r: CGFloat, g: CGFloat, b: CGFloat) {
         let cString = self
             .trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
             .replacingOccurrences(of: "^#+", with: "", options: .regularExpression)
@@ -185,10 +170,7 @@ extension String {
     }
 }
 
-
-/// ================================================================================================
-    // MARK: - ColorGen
-/// ================================================================================================
+// MARK: - ColorGen
 
 /// Uses the data parsed by `ColorAssets` to create Color Asset JSON files and Swift UIColor
 /// extensions for use in XCode projects.
@@ -209,16 +191,14 @@ final class ColorGen {
     func deleteFiles() {
         outputPaths.forEach { try? FileManager.default.removeItem(at: $0) }
     }
-}
-
-private extension ColorGen {
-    func getInput() {
+    
+    private func getInput() {
         print("Getting Input")
         let userInput = CommandLine.arguments.count >= 2
         load(from: userInput ? CommandLine.arguments[1] : URL.defSrc.relativePath)
     }
 
-    func load(from path: String) {
+    private func load(from path: String) {
         print("Loading from: \(path)")
         guard let data = FileManager.default.contents(atPath: path)
         else { exitWith("File at path '\(path)' not found") }
@@ -227,7 +207,7 @@ private extension ColorGen {
         assets = input
     }
     
-    func writeFiles() {
+    private func writeFiles() {
         print("Writing Files")
         guard let assets = assets else { exitWith("Input is missing") }
         deleteFiles()
@@ -236,13 +216,13 @@ private extension ColorGen {
         assets.extensionFile().write("Colors.swift", parent: .root)
     }
     
-    func finish() {
+    private func finish() {
         print("Success")
         assets = nil
         exit(EXIT_SUCCESS)
     }
     
-    func createColorSetFile(list: [AssetContent], parent: URL) {
+    private func createColorSetFile(list: [AssetContent], parent: URL) {
         list.forEach { (groupName, colors) in
             let group = parent.appendingPathComponent(groupName, isDirectory: true)
             colors.forEach { colorName, json in
@@ -252,7 +232,7 @@ private extension ColorGen {
         }
     }
     
-    func exitWith(_ message: String ) -> Never {
+    private func exitWith(_ message: String ) -> Never {
         print(message)
         exit(1)
     }
@@ -269,9 +249,5 @@ extension URL {
 }
 
 
-/// ================================================================================================
-    // MARK: - Main
-/// ================================================================================================
-
-
+// MARK: - Main
 ColorGen.shared.run()
