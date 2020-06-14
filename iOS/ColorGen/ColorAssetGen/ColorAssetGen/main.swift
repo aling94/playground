@@ -163,10 +163,7 @@ extension String {
                 contents: self.data(using: .utf8),
                 attributes: nil
             )
-        } catch {
-            print(error.localizedDescription)
-            exit(-1)
-        }
+        } catch { exitWith(error.localizedDescription) }
     }
 }
 
@@ -180,7 +177,7 @@ final class ColorGen {
     static let shared = ColorGen()
     
     var assets: ColorAssets?
-    let outputPaths: [URL] = [.colors, .aliases, .extFile]
+    let outputPaths: [URL] = [.colors, .aliases, .colorFile]
     
     func run() {
         getInput()
@@ -195,7 +192,7 @@ final class ColorGen {
     private func getInput() {
         print("Getting Input")
         let userInput = CommandLine.arguments.count >= 2
-        load(from: userInput ? CommandLine.arguments[1] : URL.defSrc.relativePath)
+        load(from: userInput ? CommandLine.arguments[1] : URL.source.relativePath)
     }
 
     private func load(from path: String) {
@@ -217,9 +214,7 @@ final class ColorGen {
     }
     
     private func finish() {
-        print("Success")
-        assets = nil
-        exit(EXIT_SUCCESS)
+        exitWith("Success", code: EXIT_SUCCESS)
     }
     
     private func createColorSetFile(list: [AssetContent], parent: URL) {
@@ -231,11 +226,11 @@ final class ColorGen {
             }
         }
     }
-    
-    private func exitWith(_ message: String ) -> Never {
-        print(message)
-        exit(1)
-    }
+}
+
+func exitWith(_ message: String, code: Int32 = -1) -> Never {
+    print(message)
+    exit(code)
 }
 
 // MARK: - File Paths
@@ -244,8 +239,8 @@ extension URL {
     static let assets = root.appendingPathComponent("Colors.xcassets", isDirectory: true)
     static let colors = assets.appendingPathComponent("Colors", isDirectory: true)
     static let aliases = assets.appendingPathComponent("Aliases", isDirectory: true)
-    static let defSrc = root.appendingPathComponent("ColorSource.json", isDirectory: false)
-    static let extFile = root.appendingPathComponent("Colors.swift", isDirectory: false)
+    static let source = root.appendingPathComponent("ColorSource.json", isDirectory: false)
+    static let colorFile = root.appendingPathComponent("Colors.swift", isDirectory: false)
 }
 
 
