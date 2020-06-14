@@ -10,6 +10,8 @@ extension Array where Element == String {
     var name: String { first ?? "" }
     var val: String { last ?? "" }
     var isAlias: Bool { val.contains(".") }
+    var ref: String { "\(val.split(separator: ".").last ?? "")" }
+    var hex: String { val.hasPrefix("#") ? val : "#" + val }
 }
 
 // MARK: - Group
@@ -110,14 +112,12 @@ final class ColorAssets: Decodable, Encodable {
     
     private func staticLine(_ color: Color) -> String {
         // Use Palette color reference if an aliases, otherwise use color literal.
-        let assignVal: String = {
-            var val = color.val
-            if color.isAlias { return "Palette.\(val.split(separator: ".").last ?? "")" }
-            let (r, g, b) = val.rgb
-            if !val.hasPrefix("#") { val = "#" + val }
-            return "#colorLiteral(red: \(r), green: \(g), blue: \(b), alpha: 1.0)   ///  \(val)"
-        }()
-        return "  static let \(color.name.pad(maxLen)) = \(assignVal)"
+        var val: String = "Palette.\(color.ref)"
+        if !color.isAlias {
+            let (r, g, b) = color.val.rgb
+            val = "#colorLiteral(red: \(r), green: \(g), blue: \(b), alpha: 1.0)  ///  \(color.hex)"
+        }
+        return "  static let \(color.name.pad(maxLen)) = \(val)"
     }
 }
 
