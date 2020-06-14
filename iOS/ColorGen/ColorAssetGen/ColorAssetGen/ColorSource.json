@@ -12,7 +12,7 @@
 
     {
       "blue": [
-        ["blueLitest", "D0EFFF"],
+        ["blueLitest", "D0EFFF", "0.9"],
         ["blueLite", "2A9DF4"],
         ["blue", "187BCD"],
         ["blueDark", "1167B1"],
@@ -32,7 +32,8 @@
 
     {
       "button": [
-        ["cta", "blue.blue"]
+        ["cta", "blue.blue"],
+        ["ctaLite", "blue.blue", "0.8"]
       ]
     }
 

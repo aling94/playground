@@ -9,16 +9,16 @@ typealias Color = [String]
 extension Array where Element == String {
     var name: String { first ?? "" }
     var val: String { count > 1 ? self[1] : "" }
-    var alpha: CGFloat { count > 2 ? CGFloat(Double(self[2])!) : 1 }
+    var alpha: CGFloat? { count > 2 ? CGFloat(Double(self[2])!) : nil }
     var isAlias: Bool { val.contains(".") }
     var ref: String { "\(val.split(separator: ".").last ?? "")" }
     var hex: String { val.hasPrefix("#") ? val : "#" + val }
     
-    var rgba: (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat) {
+    var rgba: (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat?) {
         let cString = val.uppercased()
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .replacingOccurrences(of: "^#+", with: "", options: .regularExpression)
-        guard cString.count == 6 else { return (0, 0, 0, alpha) }
+        guard cString.count == 6 else { return (0, 0, 0, 1) }
         
         var hex: UInt64 = 0
         Scanner(string: cString).scanHexInt64(&hex)
@@ -90,26 +90,27 @@ final class ColorAssets: Decodable, Encodable {
     /// Constructs the contents for a Color Asset Content.swift file, assuming the String is an RGB
     /// hex String.
     private func jsonContent(_ color: Color) -> String {
-       let (r, g, b, a) = (paletteMap[color.val] ?? color).rgba
-       return """
-       {
-         "info": { "version": 1, "author": "xcode" },
-         "colors": [
-           {
-             "idiom": "universal",
-             "color": {
-               "color-space": "srgb",
-               "components": {
-                 "red": "\(r)",
-                 "green": "\(g)",
-                 "blue": "\(b)",
-                 "alpha": "\(a)"
-               }
-             }
-           }
-         ]
-       }
-       """
+        let (r, g, b, a) = (paletteMap[color.val] ?? color).rgba
+        let alpha = color.alpha ?? (a ?? 1)
+        return """
+        {
+          "info": { "version": 1, "author": "xcode" },
+          "colors": [
+            {
+              "idiom": "universal",
+              "color": {
+                "color-space": "srgb",
+                "components": {
+                  "red": "\(r)",
+                  "green": "\(g)",
+                  "blue": "\(b)",
+                  "alpha": "\(alpha)"
+                }
+              }
+            }
+          ]
+        }
+        """
     }
     
     private func swiftLines(_ input: [Group]) -> String {
@@ -127,8 +128,8 @@ final class ColorAssets: Decodable, Encodable {
         var val: String = "Palette.\(color.ref)"
         if !color.isAlias {
             let (r, g, b, a) = color.rgba
-            val = "#colorLiteral(red: \(r), green: \(g), blue: \(b), alpha: \(a))  ///  \(color.hex)"
-        }
+            val = "#colorLiteral(red: \(r), green: \(g), blue: \(b), alpha: \(a ?? 1))  ///  \(color.hex)"
+        } else if let a = color.alpha { val.append(".withAlphaComponent(\(a))") }
         return "  static let \(color.name.pad(maxLen)) = \(val)"
     }
 }
