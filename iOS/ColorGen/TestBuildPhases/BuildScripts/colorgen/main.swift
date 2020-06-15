@@ -273,7 +273,11 @@ let assetsFolder = "Colors.xcassets"
 let paletteFolder = "Colors"
 let aliasesFolder = "Aliases"
 
-let sourceLocation = "$PROJECT_ROOT/BuildScripts/colorgen/\(colorSource)"
+let sourceLocation: String = {
+    let components = URL.source.pathComponents
+    let projectRoot = components.firstIndex(of: projectName) ?? 0
+    return components[projectRoot...].joined(separator: "/")
+}()
 
 // MARK: - Main
 ColorGen.shared.run()
