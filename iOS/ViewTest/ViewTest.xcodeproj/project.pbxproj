@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E1050EF224A796FC008B9BC7 /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1050EF124A796FC008B9BC7 /* ViewController3.swift */; };
 		E112904F247F32A700AE5E0F /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E112904E247F32A700AE5E0F /* ViewController2.swift */; };
 		E1129055247F48DC00AE5E0F /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1129054247F48DC00AE5E0F /* CustomView.swift */; };
 		E1129057247F48F300AE5E0F /* CustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1129056247F48F300AE5E0F /* CustomView.xib */; };
 		E175432624397C4F0097A9D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175432524397C4F0097A9D0 /* ViewController.swift */; };
 		E1A5459A24077C3A00CF91C2 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A5459924077C3A00CF91C2 /* TableViewController.swift */; };
+		E1D4BC0C24B5731C00384E9E /* AlignedIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D4BC0B24B5731C00384E9E /* AlignedIconButton.swift */; };
 		E1EE8E562405FC84003F2FA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EE8E552405FC84003F2FA1 /* AppDelegate.swift */; };
 		E1EE8E5D2405FC84003F2FA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1EE8E5B2405FC84003F2FA1 /* Main.storyboard */; };
 		E1EE8E5F2405FC85003F2FA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1EE8E5E2405FC85003F2FA1 /* Assets.xcassets */; };
@@ -19,11 +21,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E1050EF124A796FC008B9BC7 /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
 		E112904E247F32A700AE5E0F /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 		E1129054247F48DC00AE5E0F /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		E1129056247F48F300AE5E0F /* CustomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomView.xib; sourceTree = "<group>"; };
 		E175432524397C4F0097A9D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E1A5459924077C3A00CF91C2 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		E1D4BC0B24B5731C00384E9E /* AlignedIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedIconButton.swift; sourceTree = "<group>"; };
 		E1EE8E522405FC84003F2FA1 /* ViewTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViewTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EE8E552405FC84003F2FA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1EE8E5C2405FC84003F2FA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,8 +74,10 @@
 				E1A5459924077C3A00CF91C2 /* TableViewController.swift */,
 				E175432524397C4F0097A9D0 /* ViewController.swift */,
 				E112904E247F32A700AE5E0F /* ViewController2.swift */,
+				E1050EF124A796FC008B9BC7 /* ViewController3.swift */,
 				E1129054247F48DC00AE5E0F /* CustomView.swift */,
 				E1129056247F48F300AE5E0F /* CustomView.xib */,
+				E1D4BC0B24B5731C00384E9E /* AlignedIconButton.swift */,
 			);
 			path = ViewTest;
 			sourceTree = "<group>";
@@ -150,9 +156,11 @@
 			files = (
 				E1129055247F48DC00AE5E0F /* CustomView.swift in Sources */,
 				E175432624397C4F0097A9D0 /* ViewController.swift in Sources */,
+				E1050EF224A796FC008B9BC7 /* ViewController3.swift in Sources */,
 				E112904F247F32A700AE5E0F /* ViewController2.swift in Sources */,
 				E1EE8E562405FC84003F2FA1 /* AppDelegate.swift in Sources */,
 				E1A5459A24077C3A00CF91C2 /* TableViewController.swift in Sources */,
+				E1D4BC0C24B5731C00384E9E /* AlignedIconButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +306,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ViewTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,7 +324,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ViewTest/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
