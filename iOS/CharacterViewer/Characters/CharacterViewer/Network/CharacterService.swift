@@ -8,5 +8,5 @@
 import CharacterAPI
 
 extension CharacterService {
-    static let shared = CharacterService.init(url: Bundle.main.endpoint)
+    static let shared = CharacterService.init(url: Configuration.endpoint)
 }

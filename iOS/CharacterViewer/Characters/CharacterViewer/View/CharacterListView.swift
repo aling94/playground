@@ -27,7 +27,7 @@ struct CharacterListView: View {
                 else { characterSection }
             }
         }
-        .navigationBarTitle(Bundle.main.targetName)
+        .navigationBarTitle(Configuration.targetName)
     }
     
     var characterSection: some View {

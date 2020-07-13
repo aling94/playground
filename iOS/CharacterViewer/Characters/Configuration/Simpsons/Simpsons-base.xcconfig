@@ -1,0 +1,16 @@
+
+//
+//  Simpsons-base.xcconfig
+//  Characters
+//
+//  Created by Alvin Ling on 7/12/20.
+//  Copyright © 2020 Alvin Ling. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "../Global.xcconfig"
+
+TARGET_NAME = Simpsons
+ENDPOINT_URL = $(BASE_URL)simpsons+characters&format=json
