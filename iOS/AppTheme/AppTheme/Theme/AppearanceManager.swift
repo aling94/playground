@@ -86,17 +86,21 @@ private extension AppearanceManager {
         searchBars.placeholder = "Search"
         searchBars.isTranslucent = false
         // Nav bar type: uses background color if set, otherwise uses nav bar barTint
-        searchBars.backgroundColor = .green
+//        searchBars.backgroundColor = .green
         searchBars.barTintColor = .yellow
         searchBars.backgroundImage = nil
         // Cursor and cancel button color
         searchBars.tintColor = .purple
         // Background color of search field
-        searchBars.fieldColor = .blue
+//        searchBars.fieldColor = .blue
+        searchBars.searchTextField.backgroundColor = .white
+        
+        UISearchBar.appearance(in: UISearchController.self)
+            .searchTextField.backgroundColor = .white
         
         let cancelButton = UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self])
         cancelButton.setTitleTextAttributes(UIColor.black.textAttribute, for: .normal)
-        UIView.appearance(in: UINavigationBar.self, UISearchBar.self).backgroundColor = .green
+//        UIView.appearance(in: UINavigationBar.self, UISearchBar.self).backgroundColor = .green
     }
     
     func setupTextViews() {

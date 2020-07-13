@@ -9,15 +9,14 @@
 import UIKit
 
 class ViewController: UITabBarController {
+    
+    var searchController: UISearchController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
-//        if #available(iOS 10, *) {} else {
-//            tabBar.items?.forEach {
-//                $0.image = $0.image?.withRenderingMode(.alwaysOriginal)
-//            }
-//        }
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.searchController = searchController
     }
 
 
