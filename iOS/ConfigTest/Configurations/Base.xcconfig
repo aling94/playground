@@ -1,0 +1,12 @@
+//
+//  Base.xcconfig
+//  ConfigTest
+//
+//  Created by Alvin Ling on 7/13/20.
+//  Copyright © 2020 Alvin Ling. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BUILD_NUMBER = $(MARKETING_VERSION)$(VERSION_INFO_SUFFIX)
