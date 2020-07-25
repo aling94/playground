@@ -9,7 +9,5 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-SLASH = /
-SCHEME_SEP = :/$(SLASH)
-HTTPS = https$(SCHEME_SEP)
-BASE_URL = $(HTTPS)api.duckduckgo.com/?q=
+HTTPS = https:/
+BASE_URL = $(HTTPS)/api.duckduckgo.com/?q=
