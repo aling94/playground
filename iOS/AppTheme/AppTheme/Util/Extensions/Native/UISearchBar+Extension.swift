@@ -10,14 +10,21 @@ import UIKit
 
 extension UISearchBar {
     
-    dynamic var textField: UITextField? {
-        return subviews.map { $0.subviews.first(where: { $0 is UITextInputTraits }) as? UITextField }
-            .compactMap { $0 }
-            .first
+    var field: UITextField {
+        if #available(iOS 13, *) { return searchTextField }
+        return value(forKey: "searchField") as? UITextField ?? UITextField()
     }
-    
-    dynamic var fieldColor: UIColor? {
-        get { return textField?.backgroundColor }
-        set { textField?.backgroundColor = newValue }
+
+    func setFieldColor(_ color: UIColor) {
+        field.backgroundColor = color
+        if #available(iOS 13, *) { return }
+        // iOS 12 and earlier
+        guard let bg = field.subviews.first else { return }
+        if #available(iOS 11, *) {
+            bg.backgroundColor = color
+            bg.subviews.forEach { $0.removeFromSuperview() }
+        }
+        bg.layer.cornerRadius = 10.5
+        bg.layer.masksToBounds = true
     }
 }
