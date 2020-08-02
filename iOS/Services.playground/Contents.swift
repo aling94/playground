@@ -71,3 +71,17 @@ components.host = "api.github.com"
 components.path = Services.User.Document.download.path
 components.port
 print(components.url!)
+
+extension URL {
+    func appendingPath<T: PathChain>(_ chain: T) -> URL {
+        appendingPathComponent(chain.path)
+    }
+
+    mutating func appendPath<T: PathChain>(_ chain: T) {
+        appendPathComponent(chain.path)
+    }
+}
+
+let testURL = URL(string: "https://api.github.com")!
+print(testURL.absoluteURL)
+print(testURL.appendingPath(Services.User.Document.download).absoluteURL)
