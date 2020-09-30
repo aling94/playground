@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E1C7684F246F75F100ED1199"
-               BuildableName = "Simpsons.app"
-               BlueprintName = "Simpsons"
+               BlueprintIdentifier = "E1C76867246F765E00ED1199"
+               BuildableName = "TheWire.app"
+               BlueprintName = "TheWire"
                ReferencedContainer = "container:Characters.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E1C7684F246F75F100ED1199"
-            BuildableName = "Simpsons.app"
-            BlueprintName = "Simpsons"
+            BlueprintIdentifier = "E1C76867246F765E00ED1199"
+            BuildableName = "TheWire.app"
+            BlueprintName = "TheWire"
             ReferencedContainer = "container:Characters.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E1C7684F246F75F100ED1199"
-            BuildableName = "Simpsons.app"
-            BlueprintName = "Simpsons"
+            BlueprintIdentifier = "E1C76867246F765E00ED1199"
+            BuildableName = "TheWire.app"
+            BlueprintName = "TheWire"
             ReferencedContainer = "container:Characters.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
